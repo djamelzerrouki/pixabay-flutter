@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner:false ,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.deepOrange,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -31,72 +31,70 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String city = "";
-
+  String keyWord = "";
+TextEditingController editingController=TextEditingController();
   @override
   Widget build(BuildContext context) {
 
     return Container(
-//      decoration: BoxDecoration(
-//          image: DecorationImage(
-//              image: AssetImage("assets/images/imagegif0.gif"), fit: BoxFit.cover)),
+       decoration: BoxDecoration(
+          image: DecorationImage(
+           image: AssetImage("assets/images/image0.png"), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
 
             children: <Widget>[
-              IconButton(
-                  icon: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.location_on,
-                        color: Colors.amber,
-                      ),
 
-
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryPage(keyWord: city,)));
-                  }),
-              Text('$city',
-                style: TextStyle(color: Colors.amber),),
+              Text('$keyWord',
+                style: TextStyle(color: Colors.deepOrange),),
             ],
           ),
           centerTitle: true,
-          leading: IconButton(
 
-              icon: Icon(
-                Icons.list,
-                color: Colors.white,
-              ),
-              onPressed: () {}),
         ),
 
 
         body:  Column(
           children: <Widget>[
-
+//vectors
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration:InputDecoration(hintText: "Write a city",
-                    prefixIcon: Icon(Icons.search),
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  decoration:InputDecoration(hintText: "Search images, vectors",
+                    prefixIcon: IconButton(
+                        icon: Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.search,
+                              color: Colors.deepOrange,
+                            ),
+
+
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryPage(keyWord: keyWord,)));
+                          editingController.text="";
+                        }),
                   ),
 
                   onEditingComplete: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryPage(keyWord: city,)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryPage(keyWord: keyWord,)));
+                    editingController.text="";
                   },
                   onChanged: (value){
                     setState(() {
-                      city=value;
+                      keyWord=value;
                     });
-                  }
+                  },
+                controller: editingController,
+
               ),
             ),
 

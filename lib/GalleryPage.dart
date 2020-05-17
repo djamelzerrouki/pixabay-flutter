@@ -16,28 +16,44 @@ class _GalleryPageState extends State<GalleryPage> {
   var imagesDate;
 
   int currentPage  = 1;
-  int size= 5;
+  int size= 10;
+  int totelPages=1;
+  ScrollController _scrollController=ScrollController();
+
   List<dynamic> hits=[];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getData(widget.keyWord);
+    _scrollController.addListener((){
+      if(_scrollController.position.pixels==_scrollController.position.maxScrollExtent)
+       if(currentPage<totelPages) {
+         ++currentPage;
+         getData(widget.keyWord);
+       }
+    });
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  _scrollController.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Container(
-//      decoration: BoxDecoration(
-//          image: DecorationImage(
-//              image: AssetImage("assets/images/imagegif.gif"), fit: BoxFit.cover)),
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/image2.png"), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.white,
-          title: Text('${widget.keyWord}',
-            style: TextStyle(color:Colors.black),
+          backgroundColor: Colors.transparent,
+          title: Text('${widget.keyWord}, Page ${currentPage}/${totelPages}',
+            style: TextStyle(color:Colors.white),
           ),
           centerTitle: true,
 
@@ -48,6 +64,7 @@ class _GalleryPageState extends State<GalleryPage> {
         body: (imagesDate==null?CircularProgressIndicator():
         ListView.builder(
             itemCount: (imagesDate==null?0:hits.length),
+            controller: _scrollController,
             itemBuilder: (context,index){
               return Card(
                 child: Container(
@@ -84,7 +101,7 @@ class _GalleryPageState extends State<GalleryPage> {
                               Icon(Icons.star_border),
                               Text(" ${hits[index]['favorites']} ".toString(),),
                               // comments
-                              Icon(Icons.comment),
+                              Icon(Icons.chat_bubble_outline),
                               Text(" ${hits[index]['comments']} ".toString(),),
 
                             ],
@@ -111,8 +128,12 @@ class _GalleryPageState extends State<GalleryPage> {
        setState(() {
         // hits=json.decode(onResp.body);
         this.imagesDate=json.decode(onResp.body);
-        hits=imagesDate['hits'];
-      });
+        hits.addAll(imagesDate['hits']);
+        if(imagesDate['totalHits']%size==0)
+          totelPages=imagesDate['totalHits']~/size;
+        else  totelPages=1+(imagesDate['totalHits']/size).floor();
+
+       });
      }).catchError((onError){
 
     });
