@@ -22,7 +22,8 @@ Youtube: https://www.youtube.com/watch?v=jaKGsoVRw4E
 
 # Getting Started
 
-This project is a Flutter application that allows us to see the weather conditions, after determining the city and thus returns you with a list showing the weather conditions at the expense of time.
+This project is a Flutter app that helps find images via the Pixabay API. It provides API on the RESTful interface to find and restore free photos and videos released under the Pixabay license. The API displays encrypted JSON objects.
+I used this API to display beautifully designed images on mobile (Android and iOS), while developing a mobile cross-platform with a simple flutter code.
 
 Some resources to get started with such a Flutter project:
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
@@ -34,14 +35,60 @@ Some resources to get started with such a Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-# Weather Flutter
+
+Example
+Retrieving photos of "yellow flowers". The search term q needs to be URL encoded:
+
+https://pixabay.com/api/?key=16582589-68a2e0e5d7a78080a8fa51cbe&q=yellow+flowers&image_type=photo
+Response for this request:
+```json
+{
+"total": 4692,
+"totalHits": 500,
+"hits": [
+    {
+        "id": 195893,
+        "pageURL": "https://pixabay.com/en/blossom-bloom-flower-195893/",
+        "type": "photo",
+        "tags": "blossom, bloom, flower",
+        "previewURL": "https://cdn.pixabay.com/photo/2013/10/15/09/12/flower-195893_150.jpg"
+        "previewWidth": 150,
+        "previewHeight": 84,
+        "webformatURL": "https://pixabay.com/get/35bbf209e13e39d2_640.jpg",
+        "webformatWidth": 640,
+        "webformatHeight": 360,
+        "largeImageURL": "https://pixabay.com/get/ed6a99fd0a76647_1280.jpg",
+        "fullHDURL": "https://pixabay.com/get/ed6a9369fd0a76647_1920.jpg",
+        "imageURL": "https://pixabay.com/get/ed6a9364a9fd0a76647.jpg",
+        "imageWidth": 4000,
+        "imageHeight": 2250,
+        "imageSize": 4731420,
+        "views": 7671,
+        "downloads": 6439,
+        "favorites": 1,
+        "likes": 5,
+        "comments": 2,
+        "user_id": 48777,
+        "user": "Josch13",
+        "userImageURL": "https://cdn.pixabay.com/user/2013/11/05/02-10-23-764_250x250.jpg",
+    },
+    {
+        "id": 73424,
+        ...
+    },
+    ...
+]
+}
+```
+
+# Pixabay Flutter
 
 ## Features
-* [x] Simple to use 
-* [x] Get current weather, daily forecast for 16 days, 
-* [x] 3-hourly forecast 5 days for your city.
-* [x] Helpful stats, graphics, and this day in history charts are available for your reference.
-* [x] Interactive maps show precipitation, clouds, pressure, wind around your location.
+* [x] Unlimited requests, 
+* [x] reliable,
+* [x] stable, 
+* [x] simple to set up.
+
 
 
 
@@ -49,7 +96,7 @@ samples, guidance on mobile development, and a full API reference.
 * Dart
 * Flutter
 * Internet connection
-* key of https://openweathermap.org/
+* key of [pixabay](https://pixabay.com/fr/service/about/api/).
 
 
 
@@ -100,7 +147,7 @@ import 'package:intl/intl.dart';
 ## Installation  this repository
 1. Download the repository files (project) from the download section or clone this project by typing in the bash the following command:
 
-       git clone https://github.com/djamelzerrouki/Weather-Flutter.git
+       git clone https://github.com/djamelzerrouki/pixabay-flutter.git
 2. Import it in Android studio or any other Flutter IDE and let Gradle download the required dependencies for you.
 3. Run the application :D
 
