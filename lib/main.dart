@@ -45,7 +45,7 @@ TextEditingController editingController=TextEditingController();
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Row(
+          title: Row(   
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: <Widget>[
