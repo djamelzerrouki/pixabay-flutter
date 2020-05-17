@@ -12,10 +12,10 @@ The API displays encrypted JSON objects. Keys and hash values are case-sensitive
 Read more: [Pixabay API](https://pixabay.com/api/docs/)
 
 ## Screenshots
-Home page           | Select your city
+Home page           | Select your keyWord
 :---------------------:|:------------------:
 ![Home page](assets/Capture1.PNG) | ![select city](assets/Capture2.PNG)
-Result  ( Weather of city selected )           |  Gif (Weather of city)
+Result  (images)           |  Gif 
 ![Result ](assets/Capture3.PNG) | <img src="assets/untitled.gif" width="450"/>
 
 Youtube: https://www.youtube.com/watch?v=jaKGsoVRw4E
@@ -36,11 +36,13 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-Example
+## Example
+
 Retrieving photos of "yellow flowers". The search term q needs to be URL encoded:
 
 https://pixabay.com/api/?key=16582589-68a2e0e5d7a78080a8fa51cbe&q=yellow+flowers&image_type=photo
-Response for this request:
+
+#### Response for this request:
 ```json
 {
 "total": 4692,
