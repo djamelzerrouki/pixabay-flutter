@@ -27,14 +27,84 @@ class _GalleryPageState extends State<GalleryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+//      decoration: BoxDecoration(
+//          image: DecorationImage(
+//              image: AssetImage("assets/images/imagegif.gif"), fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Text('${widget.keyWord}',
+            style: TextStyle(color:Colors.black),
+          ),
+          centerTitle: true,
+
+        ),
+
+
+
+        body: (imagesDate==null?CircularProgressIndicator():
+        ListView.builder(
+            itemCount: (imagesDate==null?0:hits.length),
+            itemBuilder: (context,index){
+              return Card(
+                child: Container(
+                  width: double.infinity,
+
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                     children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(hits[index]['tags'],
+                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                      ),
+                      Container(
+                        width: double.infinity,
+                          child:Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              child: Image.network(hits[index]['previewURL'],fit: BoxFit.fitWidth,),
+                            ),
+                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              //   likes
+                              Icon(Icons.favorite_border),
+                              Text(" ${hits[index]['likes']} ".toString(),),
+                              // favorites
+                              Icon(Icons.star_border),
+                              Text(" ${hits[index]['favorites']} ".toString(),),
+                              // comments
+                              Icon(Icons.comment),
+                              Text(" ${hits[index]['comments']} ".toString(),),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+               );
+            })
+        ),),
+    );
   }
 
-  void getData(String city) {
+  void getData(String keyWord) {
 
     String url = "https://pixabay.com/api/?"
         "key=16582589-68a2e0e5d7a78080a8fa51cbe"
-        "&q=${widget.keyWord}"
+        "&q=${keyWord}"
         "&page=${currentPage}"
         "&per_page=${size}";
         http.get(url).then((onResp) {

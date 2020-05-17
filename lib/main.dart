@@ -37,9 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/imagegif0.gif"), fit: BoxFit.cover)),
+//      decoration: BoxDecoration(
+//          image: DecorationImage(
+//              image: AssetImage("assets/images/imagegif0.gif"), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
                   onEditingComplete: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryPage(city: city,)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryPage(keyWord: city,)));
                   },
                   onChanged: (value){
                     setState(() {
