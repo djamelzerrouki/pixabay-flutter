@@ -24,7 +24,7 @@ Result  (images)           |  Gif
 Youtube: see video at youtube in this link [FLUTTER Development - Gallery Application using Pixabay API](https://www.youtube.com/watch?v=BUuV2bbf2FE&feature=youtu.be)
 Youtube           |  
 :---------------------: 
-![![Gallery](assets/v.png)](https://www.youtube.com/watch?v=BUuV2bbf2FE&feature=youtu.be "FLUTTER Development - Gallery Application using Pixabay API - Click to Watch!") |
+ [![Gallery](assets/v.png)](https://www.youtube.com/watch?v=BUuV2bbf2FE&feature=youtu.be "FLUTTER Development - Gallery Application using Pixabay API - Click to Watch!") |
 
 # Getting Started
 
